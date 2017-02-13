@@ -1,21 +1,23 @@
 var webpack = require('webpack');
+var path=require('path');
 
 module.exports = {
-  entry: './src/main.js',
-  output: {
-    path:'/dist',
-    filename: 'bundle.js',
+  entry:{
+     'webpack-dev-server/client?http://localhost:8090'
+     './src/main.js'
   },
-  devServer: {
-    inline: true,
-    port: 8090
+  output: {
+    path:'./dist',
+    filename: 'bundle.js',
   },
   module: {
     loaders: [
       {
         test:/\.css$/,
         loader:'css-loader!style-loader',
-        exclude:'/node_modules/'
+        include: [
+                    path.resolve(__dirname, "not_exist_path")
+                ],
       },
       {
         test: /\.jsx?$/,
@@ -39,11 +41,7 @@ module.exports = {
       $: 'jquery',
       jquery: 'jquery'
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   watch:true
 }
