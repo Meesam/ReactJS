@@ -2,12 +2,9 @@ var webpack = require('webpack');
 var path=require('path');
 
 module.exports = {
-  entry:{
-     'webpack-dev-server/client?http://localhost:8090'
-     './src/main.js'
-  },
+entry: './public/src/main.js',
   output: {
-    path:'./dist',
+    path:'./public/dist',
     filename: 'bundle.js',
   },
   module: {
@@ -31,7 +28,6 @@ module.exports = {
       { test: /\.ttf$/,    loader: "file-loader" },
       { test: /\.eot$/,    loader: "file-loader" },
       { test: /\.svg$/,    loader: "file-loader" },
-      { test: /\.scss$/, loaders: ['style', 'css', 'postcss', 'sass'] },
       { test: /bootstrap\/dist\/js\/umd\//, loader: 'imports?jQuery=jquery' }
     ]
   },
@@ -41,6 +37,11 @@ module.exports = {
       $: 'jquery',
       jquery: 'jquery'
     }),
+    /*new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),*/
     new webpack.HotModuleReplacementPlugin()
   ],
   watch:true
