@@ -1,16 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import EmployeeList from './employeeList.jsx';
+import {browserHistory} from 'react-router';
+import request from 'superagent';
 
 class Employee extends React.Component{
    constructor(props){
      super(props);
      this.state={id:'',email:'',password:'',gender:'',address:'',genderData:[],empList:[]};
    }
-   componentWillMount() {
-     var genData= [{Id:1,Name:'Male'},{Id:2,Name:'Female'}];
-     this.setState({genderData:genData});
+
+  componentWillMount() {
+    request.get('/api/gender').end((err,res)=>{
+         this.setState({genderData: res.body});
+     });
    }
+
    handleChange(event){
      const target = event.target;
      const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -33,13 +37,19 @@ class Employee extends React.Component{
      this.setState({id:this.state.id+1,email:'',password:'',gender:'',address:'',empList:this.state.empList});
   }
 
+  handelGo(event){
+    event.preventDefault();
+    browserHistory.push('/home');
+  }
+
    render(){
      var cOptions = this.state.genderData.map(function(item, index){
        return <option key={item.Id} value={item.Name}>{item.Name}</option>
      });
     return(
       <div>
-       <form onSubmit={this.handelSubmit.bind(this)}>
+       <input type="button" className="btn btn-primary" onClick={this.handelGo.bind(this)}  value="Go to home" />
+        <form onSubmit={this.handelSubmit.bind(this)}>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email address</label>
             <input type="text" name="email" className="form-control" value={this.state.email} onChange={this.handleChange.bind(this)} aria-describedby="emailHelp" placeholder="Enter email" />

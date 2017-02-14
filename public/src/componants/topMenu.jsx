@@ -21,7 +21,7 @@ class TopMenu extends React.Component{
             </div>
             <div id="navbar" className="collapse navbar-collapse">
               <ul className="nav navbar-nav">
-                <li><Link to="/">Home</Link></li>
+                <li><Link to="/home">Home</Link></li>
                 <li><Link to="/employee">Employee</Link></li>
                 <li><Link to="/about">About</Link></li>
                 </ul>
