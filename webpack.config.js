@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path=require('path');
 
 module.exports = {
-  entry: './public/src/main.js',
+entry: './public/src/main.js',
   output: {
     path:'./public/dist',
     filename: 'bundle.js',
@@ -12,7 +12,9 @@ module.exports = {
       {
         test:/\.css$/,
         loader:'css-loader!style-loader',
-        exclude:'/node_module/'
+        include: [
+                    path.resolve(__dirname, "not_exist_path")
+                ],
       },
       {
         test: /\.jsx?$/,
