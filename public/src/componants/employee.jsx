@@ -1,5 +1,6 @@
 import React from 'react';
 import EmployeeList from './employeeList.jsx';
+import EmployeeContainer from '.././containers/employeeContainer.jsx';
 import {browserHistory} from 'react-router';
 import request from 'superagent';
 
@@ -15,15 +16,16 @@ class Employee extends React.Component{
      });
    }
 
-   handleChange(event){
+  handleChange(event){
      const target = event.target;
      const value = target.type === 'checkbox' ? target.checked : target.value;
      const name = target.name;
      this.setState({
        [name]: value
      });
-   }
-  handelSubmit(event){
+  }
+
+   handelSubmit(event){
     event.preventDefault();
     let emplist=[];
     let submitOption={
@@ -48,7 +50,9 @@ class Employee extends React.Component{
      });
     return(
       <div>
-       <input type="button" className="btn btn-primary" onClick={this.handelGo.bind(this)}  value="Go to home" />
+        <EmployeeContainer />
+        /*
+        <input type="button" className="btn btn-primary" onClick={this.handelGo.bind(this)}  value="Go to home" />
         <form onSubmit={this.handelSubmit.bind(this)}>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email address</label>
@@ -70,7 +74,8 @@ class Employee extends React.Component{
             <textarea className="form-control" name="address" value={this.state.address} onChange={this.handleChange.bind(this)} rows="3"></textarea>
           </div>
           <button type="submit" className="btn btn-primary">Submit</button>
-        </form>
+        </form>*/
+
         <EmployeeList list={this.state.empList}/>
       </div>
    )

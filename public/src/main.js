@@ -8,7 +8,7 @@ import { browserHistory } from 'react-router'
 import  $ from 'jquery';
 import 'bootstrap-loader';
 import App from './componants/app.jsx';
-import Employee from './componants/employee.jsx';
+import Employee from './containers/employeeContainer.jsx';
 import Home from './componants/home.jsx';
 import About from './componants/about.jsx';
 
