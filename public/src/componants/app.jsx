@@ -2,7 +2,7 @@ import React ,{ Component } from 'react';
 import { render } from 'react-dom';
 import TopMenu from './topMenu.jsx';
 import Footer from './footer.jsx';
-import Employee from './employee.jsx';
+
 
 class App extends React.Component{
   constructor(props){
