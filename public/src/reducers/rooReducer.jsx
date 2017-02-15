@@ -1,8 +1,6 @@
-import { combineReducers } from 'redux';
-import addEmployeeReducer from './addEmployeeReducer.jsx';
+import { combineReducers } from 'redux'
+import EmployeeReducer from './addEmployeeReducer.jsx'
 
-const rootReducer = combineReducers({
-  employee: addEmployeeReducer,
-});
-
-export default rootReducer;
+export default combineReducers({
+  EmployeeReducer,
+})

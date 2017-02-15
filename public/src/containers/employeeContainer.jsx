@@ -1,8 +1,16 @@
 import React ,{PropType, Component} from 'react';
+import { connect } from "react-redux";
 import request from 'superagent';
 import EmployeeList from '../componants/employeeList.jsx';
 import AddEmployee from '.././componants/addEmployee.jsx';
+import { addEmployee,getModule } from '.././actions/index.jsx';
 
+
+@connect((store)=>{
+  return {
+    employees: store.employees.employees,
+  };
+})
 export default class Employee extends Component {
   constructor(props) {
     super(props)
@@ -23,11 +31,15 @@ export default class Employee extends Component {
     });
   }
 
+  getEmployee() {
+    this.props.dispatch(getModule())
+  }
+
   addNewEmployee(empobj) {
-    this.state.empList.push(empobj);
-    this.setState({empList: this.state.empList});
-    this.props.onAddEmployee(empobj);
-    this.props.employeeList=this.state.empList
+    //this.state.empList.push(empobj);
+    //this.setState({empList: this.state.empList});
+    this.props.dispatch(addEmployee())
+    
   }
 
   textChange(event) {
@@ -49,7 +61,4 @@ export default class Employee extends Component {
     )
   }
 }
-Employee.prototype={
-  employee:PropType.array,
-  onAddEmployee:PropType.func
-}
+
