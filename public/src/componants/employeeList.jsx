@@ -1,11 +1,6 @@
-import React from 'react';
+import React ,{ Component,PropTypes } from 'react';
 
-class EmployeeList extends React.Component{
-   constructor(props){
-     super(props);
-     this.state={empList:props.list};
-   }
-
+export default class EmployeeList extends Component{
    render(){
      return(
        <div>
@@ -18,7 +13,7 @@ class EmployeeList extends React.Component{
            </tr>
            </thead>
            <tbody>
-           { this.state.empList.map(function (item,index) {
+           { this.props.list.map(function (item,index) {
              return <tr key={item.id}>
              <td>
              {item.email}
@@ -38,4 +33,6 @@ class EmployeeList extends React.Component{
    }
 }
 
-export default EmployeeList;
+EmployeeList.propTypes={
+  list:PropTypes.array.isRequired
+}

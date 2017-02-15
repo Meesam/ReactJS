@@ -11,16 +11,21 @@ import App from './componants/app.jsx';
 import Employee from './containers/employeeContainer.jsx';
 import Home from './componants/home.jsx';
 import About from './componants/about.jsx';
+import { configureStore } from './store/configureStore.jsx';
+import { Provider } from 'react-redux';
 
+const store = configureStore();
 render(
-    <Router history={browserHistory}>
+  <Provider store={store}>
+  <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component = {Home} />
         <Route path="/employee" component={Employee} />
         <Route path="/about" component={About} />
         <Route path="/home" component={Home} />
       </Route>
-   </Router>,
+   </Router>
+  </Provider>,
      document.getElementById('app')
 	);
 
