@@ -1,10 +1,21 @@
-const emp=(state,action)=>{
-  switch(action.type){
-    case "ADD_EMPLOYEE":
-      return [...state, action.empobj];
-    default :
-      return state
-  }
-}
 
-export default emp;
+export default function reducer(state={
+  employees:[],
+  fetching:false,
+  fetched:false,
+  error:null
+},action) {
+	
+	switch(action.type) {
+		case "FETCH_MODULES":
+			return {
+				...state,
+        fetching: false,
+        fetched: true,
+        employees:action.payload,
+			}
+     default :
+      return state
+	}
+	
+}

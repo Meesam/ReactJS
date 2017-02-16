@@ -11,13 +11,21 @@ import App from './componants/app.jsx';
 import Employee from './containers/employeeContainer.jsx';
 import Home from './componants/home.jsx';
 import About from './componants/about.jsx';
-import { configureStore } from './store/configureStore.jsx';
+import configureStore from './store/configureStore.jsx';
 import { Provider } from 'react-redux';
+import { syncHistoryWithStore} from 'react-router-redux'
+
+//const history = syncHistoryWithStore(browserHistory, store)
+
+//console.log(store.getState());
 
 const store = configureStore();
+const history = syncHistoryWithStore(browserHistory, store);
+
 render(
   <Provider store={store}>
-  <Router history={browserHistory}>
+   <Employee />
+  <Router history={history}>
       <Route path="/" component={App}>
         <IndexRoute component = {Home} />
         <Route path="/employee" component={Employee} />
