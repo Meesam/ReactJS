@@ -12,7 +12,7 @@ const middleware=applyMiddleware(promise(),thunk,logger());
 export default function configureStore(initialState) {
     const store = createStore(
         rootReducer,
-        initialState,
+      middleware,
     );
  
     return store;
